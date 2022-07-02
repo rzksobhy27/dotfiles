@@ -1,0 +1,3 @@
+[submodule "vendor/zsh-vi-mode"]
+	path = vendor/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode
