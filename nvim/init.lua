@@ -1,4 +1,4 @@
--- load lua modules faster
+--" load lua modules faster
 pcall(require, "impatient")
 
 return require("packer").startup(function(use)
@@ -9,6 +9,17 @@ return require("packer").startup(function(use)
     use("mg979/vim-visual-multi")
     use("tpope/vim-fugitive")
     use("gruvbox-community/gruvbox")
+    use("nvim-tree/nvim-web-devicons")
+    use({
+        "nvim-telescope/telescope.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+        "nvim-telescope/telescope-file-browser.nvim",
+        "nvim-telescope/telescope-ui-select.nvim"
+    })
+    use({
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-treesitter/nvim-treesitter-textobjects"
+    })
     use({
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",

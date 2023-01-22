@@ -1,4 +1,5 @@
 local lsp = require("lspconfig")
+local nnoremap = require("map").nnoremap
 
 local def_opts = {
     capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -65,4 +66,27 @@ setup("sumneko_lua", {
             },
         },
     },
+})
+
+local group = vim.api.nvim_create_augroup("LspAttach", { clear = true })
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = group,
+    callback = function(args)
+        if not (args.data and args.data.client_id) then
+            return
+        end
+
+        local bufnr = args.buf
+        local bufopts = { buffer = bufnr }
+        nnoremap("K", vim.lsp.buf.hover, bufopts)
+        nnoremap("<C-k>", vim.lsp.buf.signature_help, bufopts)
+        nnoremap("gr", vim.lsp.buf.references, bufopts)
+        nnoremap("gd", vim.lsp.buf.definition, bufopts)
+        nnoremap("gD", vim.lsp.buf.declaration, bufopts)
+        nnoremap("gi", vim.lsp.buf.implementation, bufopts)
+        nnoremap("<leader>lD", vim.lsp.buf.type_definition, bufopts)
+        nnoremap("<leader>lr", vim.lsp.buf.rename, bufopts)
+        nnoremap("<leader>la", vim.lsp.buf.code_action, bufopts)
+        nnoremap("<leader>ld", vim.diagnostic.open_float, bufopts)
+    end
 })
