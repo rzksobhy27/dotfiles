@@ -13,6 +13,6 @@ require("nvim-treesitter.configs").setup({
                 ["ac"] = "@class.outer",
                 ["ic"] = "@class.inner",
             },
-        }
-    }
+        },
+    },
 })

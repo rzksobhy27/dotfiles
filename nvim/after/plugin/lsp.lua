@@ -2,7 +2,7 @@ local lsp = require("lspconfig")
 local nnoremap = require("map").nnoremap
 
 local def_opts = {
-    capabilities = require("cmp_nvim_lsp").default_capabilities()
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
 local function setup(server, opts)
@@ -42,7 +42,7 @@ setup("clangd", {
         "-j=4",
         "--inlay-hints",
         "--header-insertion-decorators",
-    }
+    },
 })
 
 setup("bashls")
@@ -56,7 +56,7 @@ setup("sumneko_lua", {
                 version = "LuaJIT",
             },
             diagnostics = {
-                globals = {"vim"},
+                globals = { "vim" },
             },
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true),
@@ -88,5 +88,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         nnoremap("<leader>lr", vim.lsp.buf.rename, bufopts)
         nnoremap("<leader>la", vim.lsp.buf.code_action, bufopts)
         nnoremap("<leader>ld", vim.diagnostic.open_float, bufopts)
-    end
+        nnoremap("<leader>lf", vim.lsp.buf.format, bufopts)
+    end,
 })
